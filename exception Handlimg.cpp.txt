@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+int main() {
+int n,d,o;
+cout<<"Enter Number:";
+cin>>n;
+try{
+    if(n==0)
+    throw "Error! Zero is not acceptable";
+    
+    if(n%2==0){
+        cout<<"It is Even Number";
+    }
+    else{
+        cout<<"It is Odd";
+    }
+    cout<<"\nEnter Divider Number:";
+    cin>>d;
+    if(d==0)
+    throw 0;
+    o=n/d;
+    cout<<"Division Of" <<n <<"/" <<d <<"="<<o;
+}
+catch (const char* msg) {
+        cout << msg << endl;}
+catch (int num){
+    cout<<"Error!"<<num;
+}       
+        
+
+    return 0;
+}
