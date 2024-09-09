@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Student {
+    string name;
+    int ds;    
+    int dbms;
+    int cpp;   
+};
+
+int main() {
+    Student students[3];
+
+    for (int i = 0; i < 3; i++) {
+        cout << "Enter details for student " << i + 1 << ":\n";
+        cout << "Name: ";
+        cin >> students[i].name;
+        cout << "Data Structures marks: ";
+        cin >> students[i].ds;
+        cout << "DBMS marks: ";
+        cin >> students[i].dbms;
+        cout << "C++ marks: ";
+        cin >> students[i].cpp;
+    }
+
+    int fast_ds = 0,slow_ds= 0;
+    int fast_dbms = 0 , slow_dbms = 0;
+    int fast_cpp = 0 , slow_cpp = 0;
+
+    for (int i = 1; i < 3; i++) {
+        if (students[i].ds > students[fast_ds].ds) fast_ds = i;
+        if (students[i].ds < students[slow_ds].ds) slow_ds= i;
+        
+        if (students[i].dbms > students[fast_dbms].dbms) fast_dbms = i;
+        if (students[i].dbms < students[slow_dbms].dbms) slow_dbms = i;
+        
+        if (students[i].cpp > students[fast_dbms].cpp) fast_dbms = i;
+        if (students[i].cpp < students[slow_dbms].cpp) slow_dbms = i;
+    }
+
+    cout << "\nFast and Slow Learners in Each Subject:\n";
+
+    cout << "\nData Structures:\n";
+    cout << "Fast Learner: " << students[fast_ds].name << " with marks " << students[fast_ds].ds << endl;
+    cout << "Slow Learner: " << students[slow_ds].name << " with marks " << students[slow_ds].ds << endl;
+
+    cout << "\nDBMS:\n";
+    cout << "Fast Learner: " << students[fast_dbms].name << " with marks " << students[fast_dbms].dbms << endl;
+    cout << "Slow Learner: " << students[slow_dbms].name << " with marks " << students[slow_dbms].dbms << endl;
+
+    cout << "\nC++:\n";
+    cout << "Fast Learner: " << students[fast_dbms].name << " with marks " << students[fast_dbms].cpp << endl;
+    cout << "Slow Learner: " << students[slow_dbms].name << " with marks " << students[slow_dbms].cpp << endl;
+
+    return 0;
+}

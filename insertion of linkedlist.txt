@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+
+    int data;
+    Node* next;
+    Node(int new_data)
+    {
+        data = new_data;
+        next = nullptr; 
+    }
+};
+
+Node* insertAtFront(Node* head, int new_data)
+{
+    Node* new_node = new Node(new_data);
+    new_node->next = head;
+    return new_node;
+}
+
+void printList(Node* head)
+{
+    Node* obj = head;
+    while (obj != nullptr) {
+        cout << " " << obj->data;
+        obj = obj->next;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    Node* head = new Node(2);
+    head->next = new Node(3);
+    head->next->next = new Node(4);
+    head->next->next->next = new Node(5);
+
+    cout << "Original Linked List:";
+    printList(head);
+
+    cout << "After inserting Nodes at the front:";
+    int data = 1;
+    head = insertAtFront(head, data);
+
+    printList(head);
+
+    return 0;
+}
