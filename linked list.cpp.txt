@@ -1,0 +1,181 @@
+#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert a node at the beginning
+void insertAtBeginning(Node*& head, int newData) {
+    Node* newNode = new Node();  // Create a new node
+    newNode->data = newData;     // Assign data to the new node
+    newNode->next = head;        // Point the new node to the current head
+    head = newNode;              // Move head to point to the new node
+}
+
+// Function to display the linked list
+void displayList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int main() {
+    Node* head = nullptr;  // Initially, the linked list is empty
+    int data, n;
+
+    // Ask the user how many nodes to insert
+    cout << "How many nodes do you want to insert at the beginning? ";
+    cin >> n;
+
+    // Loop to take user input and insert nodes
+    for (int i = 0; i < n; i++) {
+        cout << "Enter data for node " << i+1 << ": ";
+        cin >> data;
+        insertAtBeginning(head, data);
+    }
+
+    // Display the linked list
+    cout << "Linked list after insertions: ";
+    displayList(head);
+
+    return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert a node at the end
+void insertAtEnd(Node*& head, int newData) {
+    Node* newNode = new Node();  // Create a new node
+    newNode->data = newData;
+    newNode->next = nullptr;     // The new node will be the last node, so set next to nullptr
+
+    if (head == nullptr) {       // If the list is empty, the new node becomes the head
+        head = newNode;
+        return;
+    }
+
+    Node* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;       // Traverse to the last node
+    }
+    temp->next = newNode;        // Link the last node to the new node
+}
+
+// Function to display the linked list
+void displayList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int main() {
+    Node* head = nullptr;  // Initially, the linked list is empty
+    int data, n;
+
+    // Ask the user how many nodes to insert
+    cout << "How many nodes do you want to insert at the end? ";
+    cin >> n;
+
+    // Loop to take user input and insert nodes
+    for (int i = 0; i < n; i++) {
+        cout << "Enter data for node " << i + 1 << ": ";
+        cin >> data;
+        insertAtEnd(head, data);
+    }
+
+    // Display the linked list
+    cout << "Linked list after insertions: ";
+    displayList(head);
+
+    return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert a node at a specific position
+void insertAtPosition(Node*& head, int newData, int position) {
+    Node* newNode = new Node();  // Create a new node
+    newNode->data = newData;
+
+    if (position == 1) {         // If inserting at the first position
+        newNode->next = head;    // Point the new node to the current head
+        head = newNode;          // Update head to the new node
+        return;
+    }
+
+    Node* temp = head;
+    for (int i = 1; i < position - 1 && temp != nullptr; i++) {
+        temp = temp->next;       // Traverse to the node before the desired position
+    }
+
+    if (temp == nullptr) {
+        cout << "Position out of bounds!" << endl;
+        delete newNode;          // Prevent memory leak if position is invalid
+        return;
+    }
+
+    newNode->next = temp->next;  // Link the new node to the next node
+    temp->next = newNode;        // Link the previous node to the new node
+}
+
+// Function to display the linked list
+void displayList(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int main() {
+    Node* head = nullptr;  // Initially, the linked list is empty
+    int data, position, n;
+
+    // Ask the user how many nodes to insert
+    cout << "How many nodes do you want to insert? ";
+    cin >> n;
+
+    // Loop to take user input and insert nodes at specific positions
+    for (int i = 0; i < n; i++) {
+        cout << "Enter data for node " << i + 1 << ": ";
+        cin >> data;
+        cout << "Enter position for node " << i + 1 << ": ";
+        cin >> position;
+        insertAtPosition(head, data, position);
+    }
+
+    // Display the linked list
+    cout << "Linked list after insertions: ";
+    displayList(head);
+
+    return 0;
+}
+
+
+
